@@ -34,7 +34,7 @@ resource "aws_route_table_association" "rt_assc" {
 }
 
 resource "aws_security_group" "sg-http-ssh" {
-  name   = "Allow HTTP and SSH from laptop"
+  name   = "Allow HTTP and SSH from laptop and internal interaction"
   vpc_id = aws_vpc.main-vpc.id
 
   ingress {
@@ -49,6 +49,13 @@ resource "aws_security_group" "sg-http-ssh" {
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port = 0
+    to_port   = 0
+    protocol  = -1
+    self      = true
   }
 
   egress {
