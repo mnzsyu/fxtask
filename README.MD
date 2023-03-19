@@ -26,3 +26,8 @@
 | [main.tf](./Terraform/main.tf)                         | Описание VPC, сетей и security групп            |
 | [instances.tf](./Terraform/instances.tf)               | Описание ВМ EC2                                 |
 | [outputs.tf](./Terraform/outputs.tf)                   | Получение IP-адресов ВМ после terraform apply   |
+
+## Ansible
+
+Установка docker на узлы будущего kubernetes-кластера реализована с помощью одного плейбука: [install_docker_knodes.yml](./Ansible/install_docker_knodes.yml)  
+
