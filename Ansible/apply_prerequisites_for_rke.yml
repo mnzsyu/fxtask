@@ -1,0 +1,26 @@
+---
+- name: "Run prerequisites before adding new node with rke"
+  hosts: workers
+  become: yes
+  vars:
+    private_key: |
+      -----BEGIN RSA PRIVATE KEY-----
+      -----END RSA PRIVATE KEY-----
+    public_key: "ssh-rsa # rancher@ip-10-0-0-13.eu-central-1.compute.internal"
+  tasks:
+    - name: "Setting up the workers"
+      shell: |
+        adduser rancher
+        usermod -aG docker rancher
+        echo "rancher ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+        mkdir /home/rancher/.ssh
+        chmod 700 /home/rancher/.ssh
+
+        touch /home/rancher/.ssh/authorized_keys
+        chmod 600 /home/rancher/.ssh/authorized_keys
+
+        echo "{{ private_key }}" >> /home/rancher/.ssh/id_rsa
+        echo "{{ public_key }}" >> /home/rancher/.ssh/authorized_keys
+        
+        chown -R rancher:rancher /home/rancher/.ssh
