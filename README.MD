@@ -7,3 +7,12 @@
 
 # Решение
 ## Terraform и AWS
+
+| Файл Terraform                                         | Содержимое                |
+| :--------------------------------------------:         |:-------------------|
+| [provider.tf](./Terraform/provider.tf)                 | Провайдер AWS |
+| [config.tf](./Terraform/config.tf)                     | Настройки для сохранения Terraform state в S3   |
+| [data.tf](./Terraform/data.tf)                         | Используемые данные |
+| [variables.tf](./Terraform/variables.tf)               | Используемые переменные |
+| [terraform.tfvars](./Terraform/terraform.tfvars)       | Задаваемые значения переменных |
+| [vpc.tf](./Terraform/vpc.tf)                           | Описание VPC, сетей и security групп |
