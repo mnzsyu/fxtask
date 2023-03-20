@@ -188,3 +188,9 @@ knode-1   Ready    controlplane,etcd,worker   68m   v1.24.10
 knode-2   Ready    controlplane,etcd,worker   68m   v1.24.10
 knode-3   Ready    controlplane,etcd,worker   68m   v1.24.10
 ```
+
+## Docker
+
+[Dockerfile](./App/Dockerfile)  
+[index.hml](./App/data/index.html)
+
