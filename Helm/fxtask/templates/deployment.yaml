@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "fxtask.fullname" . }}
+  labels:
+    {{- include "fxtask.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.application.replicaCount }}
+  revisionHistoryLimit: {{ .Values.application.revisionHistoryLimit }}
+  selector:
+    matchLabels: 
+      {{- include "fxtask.selectorLabels" . | nindent 6 }}
+  template:
+    metadata: 
+      labels:
+        {{- include "fxtask.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ include "fxtask.fullname" . }}
+          image: "{{ .Values.application.image.repository }}:{{ .Values.application.image.tag | default "1.0" }}"
+          imagePullPolicy: {{ .Values.application.image.pullPolicy }}
+          ports:
+            - containerPort: 80
+              name: http
+          {{- with .Values.application.probes  }}
+          {{- toYaml . | nindent 10 }}
+          {{- end}}
+          {{- with .Values.application.resources  }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end}}
+
