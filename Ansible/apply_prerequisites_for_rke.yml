@@ -23,4 +23,5 @@
         echo "{{ private_key }}" >> /home/rancher/.ssh/id_rsa
         echo "{{ public_key }}" >> /home/rancher/.ssh/authorized_keys
         
+        chmod 600 /home/rancher/.ssh/id_rsa
         chown -R rancher:rancher /home/rancher/.ssh

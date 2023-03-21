@@ -194,3 +194,17 @@ knode-3   Ready    controlplane,etcd,worker   68m   v1.24.10
 [Dockerfile](./App/Dockerfile)  
 [index.hml](./App/data/index.html)
 
+## Helm
+Установка Helm-чарта:  
+```
+helm install fxtask ./fxtask/ -f custom_values.yaml
+```
+
+| Файл Helm                                               | Содержимое                                      |
+| :------------------------------------------------------:|:------------------------------------------------|
+| [Chart](./Helm/fxtask/Chart.yaml)                       | Информация о чарте                              |
+| [Values](./Helm/fxtask/values.yaml)                     | Используемые значения                           |
+| [Custom values](./Helm/custom_values.yaml)              | Кастомные значения под инфраструктуру           |
+| [Deployment](./Helm/fxtask/templates/deployment.yaml)   | kind: Deployment                                |
+| [Service](./Helm/fxtask/templates/service.yaml)         | kind: Service                                   |
+| [Ingress](./Helm/fxtask/templates/ingress.yaml)         | kind: Ingress                                   |
